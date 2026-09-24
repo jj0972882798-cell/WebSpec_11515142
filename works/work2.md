@@ -1,7 +1,7 @@
 # 第2次作業(4%)
 - 學號：(11515142)
 - 姓名：(陳槿閎)
-
+- 信箱：(jj0972882798@gmail.com)
 ## 作業目標
 1. VSCode安裝：🔗[https://code.visualstudio.com/Download](https://code.visualstudio.com/Download)
 2. VSCode Extension安裝：
