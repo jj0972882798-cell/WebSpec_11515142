@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&#x5409;&#x4ed6;&#x5546;&#x5834;&#x7db2;&#x7ad9;&#xff5c;&#x9006;&#x5411;&#x8a73;&#x7d30;&#x898f;&#x683c;&#x8aaa;&#x660e;&#x66f8; &lpar;Reverse-Engineered Specification&rpar;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:true,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="吉他商場網站逆向詳細規格說明書-reverse-engineered-specification">吉他商場網站｜逆向詳細規格說明書 (Reverse-Engineered Specification)</h1>
+<blockquote>
+<p><strong>來源檔案</strong>：<code>WebPage_11515142/outline/index.html</code><br>
+<strong>文件版本</strong>：v1.0 (逆向工程詳細版)<br>
+<strong>建立日期</strong>：2026-10-01<br>
+<strong>文件目的</strong>：完整逆向解析「吉他商場」網頁之架構、視覺系統、版面佈局、元件功能、互動邏輯與音效合成演算法，以供後續精確修改規格、功能擴充與二次重構開發。</p>
+</blockquote>
+<hr>
+<h2 id="1-專案與品牌定位概述">1. 專案與品牌定位概述</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">項目</th>
+<th style="text-align:left">詳細規格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>品牌名稱</strong></td>
+<td style="text-align:left">吉他商場（BLUE GUITARS &amp; CRAFT）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>網站類型</strong></td>
+<td style="text-align:left">高階吉他品牌旗艦形象、線上展示、音色試聽與電商導購整合之單頁式網站 (SPA)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>主要目標受眾</strong></td>
+<td style="text-align:left">專業吉他演奏家、獨立音樂製作人、指彈愛好者、琴款收藏家及對音質手感有極致要求之吉他愛好者</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>核心商業目標</strong></td>
+<td style="text-align:left">呈現高端工藝品質、消除線上購琴疑慮（提供音色試聽與14天品鑑保障）、促成線上購買下單與線下 VIP 試奏預約</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>語言與編碼</strong></td>
+<td style="text-align:left">繁體中文，HTML <code>lang=&quot;zh-Hant&quot;</code>，<code>UTF-8</code> 編碼</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>品牌標語</strong></td>
+<td style="text-align:left">「撥動指尖共鳴，遇見屬於你的傳世好琴。」</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>品牌核心調性</strong></td>
+<td style="text-align:left">高階尊榮（Luxury）、深邃沉穩（Midnight Blue）、精湛手工工藝（Craftsmanship）、科學聲學保證（Acoustic Precision）</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="2-技術邊界與架構規格">2. 技術邊界與架構規格</h2>
+<ol>
+<li><strong>純原生技術實現</strong>：
+<ul>
+<li>全站採用 HTML5 語意標籤、原生 CSS3（現代變數、Flexbox、CSS Grid、Clamp 流體字級）與原生 JavaScript (ES6+)。</li>
+<li>不依賴 React、Vue 等前端框架，不需 Webpack/Vite 建置打包流程，隨開即跑。</li>
+</ul>
+</li>
+<li><strong>零外部圖像損毀風險 (Zero External Image Dependency)</strong>：
+<ul>
+<li>全站吉他主視覺、商品圖示、音響木箱皆由純向量 SVG 搭配 CSS 漸層立體光影繪製而成，保證任何螢幕解析度下清晰銳利且 100% 離線可用。</li>
+</ul>
+</li>
+<li><strong>Web Audio API 物理諧波音色合成</strong>：
+<ul>
+<li>內建瀏覽器原生音訊合成引擎，透過 <code>AudioContext</code>、多重振盪器（Oscillators）、雙二階濾波器（BiquadFilter）與 ADSR 包絡線，即時演算吉他撥弦泛音，無需下載龐大 MP3/WAV 外部音檔。</li>
+</ul>
+</li>
+<li><strong>外部依賴庫 (CDN)</strong>：
+<ul>
+<li><strong>Google Fonts</strong>：<code>Montserrat</code> (400/600/700/800)、<code>Noto Sans TC</code> (400/500/700)、<code>Noto Serif TC</code> (600/700/900)。</li>
+<li><strong>Font Awesome 6.4.0</strong>：提供直觀專業圖標支援。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="3-seo-與全站-meta-設定">3. SEO 與全站 Meta 設定</h2>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;description&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;吉他商場｜專為吉他愛好者打造的高階吉他專門店。匯聚頂級原聲木吉他、手工電吉他與演奏級古典琴，提供線上音色試聽、尊榮試奏預約與全省恆溫安全配送。&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>吉他商場｜高階吉他專門店・品味極致音色<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+</code></pre>
+<hr>
+<h2 id="4-視覺系統與-design-tokens">4. 視覺系統與 Design Tokens</h2>
+<h3 id="41-色彩代碼-token-深藍主調與金琥珀點綴">4.1 色彩代碼 Token (深藍主調與金琥珀點綴)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Token 名稱</th>
+<th style="text-align:left">色碼</th>
+<th style="text-align:left">用途說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>--primary-950</code></td>
+<td style="text-align:left"><code>#061122</code></td>
+<td style="text-align:left">最深夜空藍，頁尾背景、極深對比背景</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--primary-900</code></td>
+<td style="text-align:left"><code>#0a1b33</code></td>
+<td style="text-align:left">導航列底色、深色卡片主要底色、按鈕漸層終點</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--primary-800</code></td>
+<td style="text-align:left"><code>#102a4e</code></td>
+<td style="text-align:left">旗艦吉他背景、深層陰影色</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--primary-700</code></td>
+<td style="text-align:left"><code>#173d6e</code></td>
+<td style="text-align:left">次深藍色邊框與輔助標籤</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--primary-600</code></td>
+<td style="text-align:left"><code>#1e5292</code></td>
+<td style="text-align:left">品牌主要標識藍、次級按鈕、特點圖示底色</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--primary-500</code></td>
+<td style="text-align:left"><code>#2563eb</code></td>
+<td style="text-align:left">亮藍互動色、主要 CTA 按鈕高亮色</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--primary-400</code></td>
+<td style="text-align:left"><code>#38bdf8</code></td>
+<td style="text-align:left">天藍高亮光暈、吉他琴身描邊、動態波形色</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--primary-300</code></td>
+<td style="text-align:left"><code>#7dd3fc</code></td>
+<td style="text-align:left">品牌副標文字、精緻線條、輔助文字</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--accent-gold</code></td>
+<td style="text-align:left"><code>#d4af37</code></td>
+<td style="text-align:left">皇家金、鎮店之寶徽章、五星好評、琴弦配件重點色</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--accent-amber</code></td>
+<td style="text-align:left"><code>#e69d24</code></td>
+<td style="text-align:left">琥珀金 CTA 按鈕高光</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--bg-light</code></td>
+<td style="text-align:left"><code>#f8fafc</code></td>
+<td style="text-align:left">全站主要亮色背景（Slate 50）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--bg-surface-soft</code></td>
+<td style="text-align:left"><code>#f1f5f9</code></td>
+<td style="text-align:left">區塊淺色底、規格藥丸標籤底色</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--text-main</code></td>
+<td style="text-align:left"><code>#0f172a</code></td>
+<td style="text-align:left">淺色區主要文字（Slate 900）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--text-muted</code></td>
+<td style="text-align:left"><code>#64748b</code></td>
+<td style="text-align:left">次要文字、說明敘述（Slate 500）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-字體排印層級-typography-scale">4.2 字體排印層級 (Typography Scale)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">應用層級</th>
+<th style="text-align:left">使用字體</th>
+<th style="text-align:left">字重 (Weight)</th>
+<th style="text-align:left">大小與行高規範</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Hero 主標題</strong></td>
+<td style="text-align:left">Noto Serif TC</td>
+<td style="text-align:left">900</td>
+<td style="text-align:left"><code>clamp(2.4rem, 4.2vw, 3.6rem)</code> / 行高 1.22</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>區塊大標題</strong></td>
+<td style="text-align:left">Noto Serif TC</td>
+<td style="text-align:left">800</td>
+<td style="text-align:left"><code>clamp(2.0rem, 3.2vw, 2.7rem)</code> / 行高 1.30</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>卡片/商品標題</strong></td>
+<td style="text-align:left">Noto Serif TC</td>
+<td style="text-align:left">700</td>
+<td style="text-align:left"><code>1.25rem - 1.45rem</code> / 行高 1.35</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>英文字型/數據</strong></td>
+<td style="text-align:left">Montserrat</td>
+<td style="text-align:left">600 - 800</td>
+<td style="text-align:left">具現代感、精確科技與工藝美感</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>內文/段落</strong></td>
+<td style="text-align:left">Noto Sans TC</td>
+<td style="text-align:left">400 - 500</td>
+<td style="text-align:left"><code>0.9rem - 1.1rem</code> / 行高 1.7 - 1.85</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>區塊小前標 (Eyebrow)</strong></td>
+<td style="text-align:left">Montserrat / Noto Sans TC</td>
+<td style="text-align:left">700</td>
+<td style="text-align:left"><code>0.82rem</code>、大寫字距 <code>.18em</code>，亮天藍</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="5-網頁資訊架構與區塊詳細規格">5. 網頁資訊架構與區塊詳細規格</h2>
+<pre><code class="language-text">index.html (吉他商場)
+├── 1. Header (Sticky 導覽列、Logo、購物車觸發鈕、行動選單開關)
+├── 2. Hero Section (主視覺標題、品牌優勢數據、旗艦款 Grand Auditorium 推薦卡)
+├── 3. Features Bar (四大品質與服務承諾條)
+├── 4. Tone Studio (Web Audio 線上原聲試聽間、動態聲波可視化、和弦合成)
+├── 5. Shop Collection (精選琴款展示庫、5大分類篩選、6把高階吉他商品卡)
+├── 6. Craft Section (四大製琴工藝準則、聲學力木結構說明)
+├── 7. Reviews Section (三大職業樂手與收藏家見證背書)
+├── 8. Booking Section (VIP 試奏室預約專區、表單防呆與互動)
+├── 9. Footer (品牌社群、全站鏈結、電子報訂閱與版權)
+├── 10. Cart Drawer (側邊滑入式購物車抽屜、小計總額、移除與結帳引導)
+└── 11. Toast System (操作即時提示回饋浮動條)
+</code></pre>
+<hr>
+<h3 id="51-固定頁首導航列-sticky-navigation-header">5.1 固定頁首導航列 (Sticky Navigation Header)</h3>
+<ul>
+<li><strong>位置與行為</strong>：固定於螢幕頂部（<code>position: sticky; top: 0; z-index: 1000</code>），具備磨砂毛玻璃效果（<code>backdrop-filter: blur(14px)</code>）與深藍半透明背景。</li>
+<li><strong>左側 Brand Logo</strong>：
+<ul>
+<li>藍色漸層圓角吉他圖示徽章（<code>fa-solid fa-guitar</code>），自帶天藍色柔和光暈。</li>
+<li>主文字：「大吉他商場」，副標：「BLUE GUITARS &amp; CRAFT」（全大寫、字距 <code>.22em</code>）。</li>
+</ul>
+</li>
+<li><strong>中間 Nav Links</strong>：
+<ul>
+<li>錨點平滑捲動：<code>#home</code>（首頁）、<code>#tone-studio</code>（原聲試聽）、<code>#collection</code>（典藏琴款）、<code>#craft</code>（製琴工藝）、<code>#reviews</code>（樂手見證）、<code>#booking</code>（VIP 預約試奏）。</li>
+<li>Hover 動效：天藍色底線由左至右展開。</li>
+</ul>
+</li>
+<li><strong>右側 Nav Actions</strong>：
+<ul>
+<li>購物車圖示按鈕（<code>#cartBtn</code>）：內建圓形紅色數字徽章（<code>#cartCount</code>），隨購買數量即時更新。</li>
+<li>行動裝置漢堡選單切換鈕（<code>#mobileMenuBtn</code>）：於 <code>&lt;768px</code> 螢幕展開折疊式導覽清單。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="52-hero-主視覺區塊-home">5.2 Hero 主視覺區塊 (<code>#home</code>)</h3>
+<ul>
+<li><strong>版面結構</strong>：雙欄 Grid 排版（左欄文字與數據，右欄主打吉他展示卡），在手機平板（<code>&lt;1024px</code>）自動轉換為單欄。</li>
+<li><strong>左欄文案與數據</strong>：
+<ul>
+<li>小標標籤：「2026 全球高階製琴工藝大賞」（帶有鳥圖標）。</li>
+<li>主標題：「撥動指尖共鳴，遇見屬於你的傳世好琴。」（「傳世好琴」帶有金藍漸層文字特效）。</li>
+<li>核心描述：點出嚴選稀有熟成單板、大師力木與極致音色。</li>
+<li>雙按鈕群組：
+<ul>
+<li>主按鈕：「探索精選高階吉他」（金琥珀漸層按鈕，錨點至 <code>#collection</code>）。</li>
+<li>副按鈕：「線上即時試聽音色」（半透明毛玻璃邊框按鈕，錨點至 <code>#tone-studio</code>）。</li>
+</ul>
+</li>
+<li>三大數據面板：
+<ol>
+<li><code>30+</code> 年：天然原木風乾年份</li>
+<li><code>100%</code>：出廠手工專業弦距精調</li>
+<li><code>終身</code>：原廠結構健檢保固承諾</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>右欄焦點吉他展示卡</strong>：
+<ul>
+<li>標籤：金色皇冠標籤「本月旗艦首席推薦」。</li>
+<li>視覺圖：純 SVG 繪製的深藍色漸層民謠吉他，具備上下懸浮微動效（Floating Animation）。</li>
+<li>規格型號：皇家深藍・Grand Auditorium 41&quot;（AAAA級英格曼雲杉 × 桃花心木）。</li>
+<li>價格展示：特惠價 <code>NT$ 98,800</code>，原價 <code>NT$ 118,000</code>。</li>
+<li>交互功能：支援「立即珍藏購買」加入購物車，以及「試聽此琴」一鍵觸發音訊試聽。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="53-特點承諾條-features-bar">5.3 特點承諾條 (Features Bar)</h3>
+<p>全寬白色背景、四等分 Grid 配置，建立購買信任感：</p>
+<ol>
+<li><strong>原廠正品 終身保修</strong>：附獨立編號證書與終身保固。</li>
+<li><strong>全台恆溫 防震專送</strong>：高規格溫濕度控制包裝，安全到府。</li>
+<li><strong>大師一對一 弦距微調</strong>：依個人手感習慣客製最佳演奏低弦距。</li>
+<li><strong>14天 品鑑試奏保障</strong>：充足時間感受琴身與開音變化。</li>
+</ol>
+<hr>
+<h3 id="54-線上原聲試聽間-tone-studio">5.4 線上原聲試聽間 (<code>#tone-studio</code>)</h3>
+<ul>
+<li><strong>功能背景</strong>：突破傳統線上買琴無法得知真實音色的最大痛點。</li>
+<li><strong>4 大琴款音色切換標籤</strong>：
+<ol>
+<li>41吋全單民謠吉他 (雲杉/玫瑰木)</li>
+<li>藍調經典手工電吉他 (Clean Tone)</li>
+<li>演奏級古典尼龍弦琴 (溫暖木質)</li>
+<li>爵士拱頂半空心吉他 (醇厚低頻)</li>
+</ol>
+</li>
+<li><strong>視覺化音波顯示 (<code>#waveBars</code>)</strong>：
+<ul>
+<li>包含 20 根垂直動態律動長條，播放時觸發多頻率相位交錯的 CSS 動畫（<code>animation: wavePulse</code>）。</li>
+</ul>
+</li>
+<li><strong>觸發按鈕與即時回饋</strong>：
+<ul>
+<li>點擊「撥動和弦試聽」即啟動 Web Audio 合成，按鈕文字與圖示轉換為「共鳴演奏中...」，持續 2.6 秒後平滑恢復。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="55-精選吉他商場典藏庫-collection">5.5 精選吉他商場典藏庫 (<code>#collection</code>)</h3>
+<h4 id="分類切換系統">分類切換系統</h4>
+<p>提供 5 個 Filter Tab 按鈕，透過 JavaScript <code>filterGuitars(category)</code> 控制卡片顯示與隱藏：</p>
+<ul>
+<li>全部頂級琴款 (6)</li>
+<li>原聲民謠吉他 (2)</li>
+<li>手工電吉他 (2)</li>
+<li>典藏古典吉他 (1)</li>
+<li>爵士中空電吉他 (1)</li>
+</ul>
+<h4 id="6-大高階琴款產品規格庫">6 大高階琴款產品規格庫</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">編號</th>
+<th style="text-align:left">琴名與系列</th>
+<th style="text-align:left">類別</th>
+<th style="text-align:left">面板 / 背側木料</th>
+<th style="text-align:left">特色標籤</th>
+<th style="text-align:center">售價 (NT$)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>01</strong></td>
+<td style="text-align:left"><strong>皇家深藍・旗艦全單民謠吉他</strong><br><code>Custom Dreadnought 41&quot;</code></td>
+<td style="text-align:left">acoustic</td>
+<td style="text-align:left">AAAA英格曼雲杉單板 / 東印度玫瑰木</td>
+<td style="text-align:left">全單板、真貝鑲嵌、Gotoh鍍金弦鈕</td>
+<td style="text-align:center">98,800</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>02</strong></td>
+<td style="text-align:left"><strong>蒼藍星芒・手工復刻電吉他</strong><br><code>Custom Shop Vintage '59</code></td>
+<td style="text-align:left">electric</td>
+<td style="text-align:left">5A火焰楓木 / 一體成型輕量桃花心木</td>
+<td style="text-align:left">手工特調、Alnico V 手繞拾音器、CTS電位器</td>
+<td style="text-align:center">135,000</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>03</strong></td>
+<td style="text-align:left"><strong>深海迴響・OM 指彈演奏吉他</strong><br><code>OM-Deluxe Fingerstyle</code></td>
+<td style="text-align:left">acoustic</td>
+<td style="text-align:left">阿迪朗達克紅雲杉 / 特選可可波羅木</td>
+<td style="text-align:left">大師簽名款、烏木指板、骨質弦枕</td>
+<td style="text-align:center">112,000</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>04</strong></td>
+<td style="text-align:left"><strong>蔚藍之聲・大師古典尼龍弦吉他</strong><br><code>Concert Grand Classical</code></td>
+<td style="text-align:left">classical</td>
+<td style="text-align:left">熟成西班牙紅雪松 / 頂級黑黃檀</td>
+<td style="text-align:left">西班牙名門、托雷斯扇形音樑、硝化漆</td>
+<td style="text-align:center">158,000</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>05</strong></td>
+<td style="text-align:left"><strong>湛藍狂潮・超薄琴頸電吉他</strong><br><code>Modern Solidbody Pro</code></td>
+<td style="text-align:left">electric</td>
+<td style="text-align:left">赤楊木 / 複合曲率超薄指板</td>
+<td style="text-align:left">現代演奏、主動無雜音電路、不鏽鋼琴桁</td>
+<td style="text-align:center">86,500</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>06</strong></td>
+<td style="text-align:left"><strong>弦光之夜・手工切削拱頂爵士吉他</strong><br><code>Archtop Jazz Master 17&quot;</code></td>
+<td style="text-align:left">archtop</td>
+<td style="text-align:left">手工雕刻雲杉拱面 / 虎紋楓木</td>
+<td style="text-align:left">爵士殿堂、F響孔、浮動式雙線圈拾音器</td>
+<td style="text-align:center">188,000</td>
+</tr>
+</tbody>
+</table>
+<p>每張商品卡均包含：</p>
+<ul>
+<li>懸浮放大之 SVG 向量琴身示意圖。</li>
+<li>快捷「耳機/喇叭」音色試聽鈕。</li>
+<li>專屬工藝與木料標籤膠囊（Pills）。</li>
+<li>「立即購買」加入購物車按鈕。</li>
+</ul>
+<hr>
+<h3 id="56-製琴工藝與木料哲學-craft">5.6 製琴工藝與木料哲學 (<code>#craft</code>)</h3>
+<ul>
+<li><strong>左側大師準則卡</strong>：
+<ul>
+<li>超低溫風乾陳化技術（消除木質殘餘應力）。</li>
+<li>手工扇形音樑削切（Scalloped Bracing 釋放最大共鳴空間）。</li>
+<li>超薄手工硝化纖維亮光漆（使木孔自然呼吸傳震）。</li>
+</ul>
+</li>
+<li><strong>右側四重品管流程</strong>：
+<ul>
+<li><code>01</code> 嚴苛木料選品（取50年以上木料中段，合格率 &lt; 8%）。</li>
+<li><code>02</code> 精密燕尾榫接（Dovetail Neck Joint，弦震零阻礙傳導）。</li>
+<li><code>03</code> Plekk 航太級音準整平（微米級電腦掃描，徹底杜絕打弦）。</li>
+<li><code>04</code> 終身健康健檢（每年兩次免費原廠恆溫除濕調校）。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="57-顧客與樂手真實見證-reviews">5.7 顧客與樂手真實見證 (<code>#reviews</code>)</h3>
+<p>三位不同領域專業音樂人見證卡片，具備 5 星評價與專屬頭像：</p>
+<ol>
+<li><strong>陳品豪</strong>（獨立民謠音樂製作人 / 指彈吉他手）：讚揚皇家深藍款在錄音室麥克風前的水晶清晰度。</li>
+<li><strong>林維哲</strong>（藍調樂團主奏吉他手 / 收藏15年）：肯定 1959 復刻款的延音表現與手部人體工學舒適度。</li>
+<li><strong>張以婷</strong>（室內樂古典吉他演奏者）：讚許旗艦館試奏顧問之客觀專業與無推銷壓力。</li>
+</ol>
+<hr>
+<h3 id="58-vip-試奏預約專區-booking">5.8 VIP 試奏預約專區 (<code>#booking</code>)</h3>
+<ul>
+<li><strong>展示資訊</strong>：
+<ul>
+<li>旗艦館地址：台北市信義區松高路 18 號 8F</li>
+<li>專線：(02) 2345-6789</li>
+<li>營業時間：週一至週日 11:00 - 21:30</li>
+</ul>
+</li>
+<li><strong>預約表單欄位</strong>：
+<ol>
+<li>姓名（<code>#userName</code>，必填）</li>
+<li>行動電話（<code>#userPhone</code>，必填）</li>
+<li>體驗琴款（下拉選單，涵蓋六大款型與大師客製諮詢）</li>
+<li>預約門市（台北信義、台中七期、高雄美術館）</li>
+<li>預約日期（<code>#bookingDate</code>，DatePicker，JavaScript 自動預填次日日期）</li>
+</ol>
+</li>
+<li><strong>提交事件</strong>：觸發 <code>handleBooking(e)</code>，彈出確認 Toast 並清空表單。</li>
+</ul>
+<hr>
+<h3 id="59-頁尾-footer">5.9 頁尾 (Footer)</h3>
+<ul>
+<li><strong>品牌區塊</strong>：品牌定位宣言與大社群按鈕（Facebook, Instagram, YouTube, LINE）。</li>
+<li><strong>快捷導覽區塊</strong>：琴款系列連結與尊榮售後服務連結。</li>
+<li><strong>電子報訂閱</strong>：Email 輸入框，提交後觸發 <code>handleNewsletter(e)</code> 並跳出確認 Toast。</li>
+<li><strong>版權列</strong>：標記 2026 年份與規格所有權聲明。</li>
+</ul>
+<hr>
+<h2 id="6-javascript-核心邏輯與演算法規格">6. JavaScript 核心邏輯與演算法規格</h2>
+<h3 id="61-購物車資料架構與狀態管理-cart-system">6.1 購物車資料架構與狀態管理 (Cart System)</h3>
+<pre><code class="language-javascript"><span class="hljs-comment">// 購物車資料陣列結構</span>
+<span class="hljs-keyword">let</span> cart = [
+  { <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;皇家深藍・旗艦全單民謠吉他&quot;</span>, <span class="hljs-attr">price</span>: <span class="hljs-number">98800</span>, <span class="hljs-attr">quantity</span>: <span class="hljs-number">1</span> }
+];
+</code></pre>
+<ul>
+<li><strong>核心函式規格</strong>：
+<ul>
+<li><code>toggleCart(show: boolean)</code>：控制購物車側邊抽屜（<code>.cart-drawer</code>）與背景遮罩（<code>.cart-drawer-overlay</code>）之開合。</li>
+<li><code>addToCart(id, name, price)</code>：檢查是否已存在品項，若已存在則累加數量；若不存在則 push 新物件。更新後呼叫 <code>updateCartUI()</code> 並展示 Toast。</li>
+<li><code>removeFromCart(id)</code>：透過 <code>filter</code> 移除指定項目並重繪畫面。</li>
+<li><code>updateCartUI()</code>：更新購物車徽章計數（<code>cartCount</code>）、累加總價（<code>cartTotal</code>），並依據清單是否為空動態渲染商品項目或空狀態圖文。</li>
+<li><code>checkout()</code>：檢查清單，執行結帳引導與防呆提示。</li>
+</ul>
+</li>
+</ul>
+<h3 id="62-web-audio-api-物理諧波合成引擎-tone-studio-engine">6.2 Web Audio API 物理諧波合成引擎 (Tone Studio Engine)</h3>
+<h4 id="和弦音高設定-e-minor-9">和弦音高設定 (E minor 9)</h4>
+<pre><code class="language-javascript"><span class="hljs-comment">// 物理頻率 (Hz)：E2, B2, E3, G3, D4, F#4</span>
+<span class="hljs-keyword">const</span> frets = [<span class="hljs-number">82.41</span>, <span class="hljs-number">123.47</span>, <span class="hljs-number">164.81</span>, <span class="hljs-number">196.00</span>, <span class="hljs-number">293.66</span>, <span class="hljs-number">369.99</span>];
+</code></pre>
+<h4 id="掃弦與音色濾波演算法">掃弦與音色濾波演算法</h4>
+<ul>
+<li><strong>掃弦時間差</strong>：每根琴弦設定 <code>idx * 0.065s</code> 的時間位移，模擬真實手指由粗弦至細弦撥動的微小時間差。</li>
+<li><strong>音色參數對應表</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">音色類型</th>
+<th style="text-align:left">振盪器波形 (<code>osc.type</code>)</th>
+<th style="text-align:left">濾波器類型 (<code>filter.type</code>)</th>
+<th style="text-align:left">截止頻率 (<code>frequency</code>) 與行為</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Acoustic (民謠)</strong></td>
+<td style="text-align:left"><code>triangle</code></td>
+<td style="text-align:left"><code>lowpass</code></td>
+<td style="text-align:left">由 3200Hz 指數衰減至 300Hz（模擬木箱箱體吸音）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Electric (電吉他)</strong></td>
+<td style="text-align:left"><code>sawtooth</code></td>
+<td style="text-align:left"><code>bandpass</code></td>
+<td style="text-align:left">固定 1400Hz，Q 值設為 3.5（模擬磁性拾音器中頻穿透力）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Classical (古典琴)</strong></td>
+<td style="text-align:left"><code>sine</code></td>
+<td style="text-align:left"><code>lowpass</code></td>
+<td style="text-align:left">由 1800Hz 衰減至 150Hz（模擬尼龍弦圓潤無金屬雜音特性）</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Jazz (爵士拱頂)</strong></td>
+<td style="text-align:left"><code>triangle</code></td>
+<td style="text-align:left"><code>lowpass</code></td>
+<td style="text-align:left">固定 900Hz（模擬溫暖雙線圈拾音器與厚重木板回音）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>ADSR 音量包絡線</strong>：
+<ul>
+<li>Attack：<code>0.015s</code> 迅速爬升至 <code>0.35</code> 增益（撥片或指甲觸弦瞬間）。</li>
+<li>Decay / Release：依據各音色持續時間（<code>durationSec = 2.5s</code>）以 <code>exponentialRampToValueAtTime</code> 平滑指數衰減至 <code>0.0001</code>。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="7-響應式斷點與無障礙規格-rwd--accessibility">7. 響應式斷點與無障礙規格 (RWD &amp; Accessibility)</h2>
+<ul>
+<li><strong>斷點規劃</strong>：
+<ul>
+<li><code>1024px</code>：雙欄佈局（Hero、工藝、見證、預約表單）折疊為單欄；特點條由 4 欄切換為 2 欄。</li>
+<li><code>768px</code>：桌機導覽列隱藏，啟用漢堡選單（<code>.menu-toggle</code>）；商品網格切換為單欄自適應；預約表單雙欄輸入切換為全寬單欄。</li>
+</ul>
+</li>
+<li><strong>無障礙 (A11y)</strong>：
+<ul>
+<li>所有互動圖示與按鈕皆具備 <code>aria-label</code> 或明確文字標示。</li>
+<li>保留清晰之焦點狀態（Focus Outline）。</li>
+<li>色彩對比度符合 WCAG AA 標準（深藍底搭配天藍與白字，深淺對比度高於 7:1）。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="8-驗收核對清單-acceptance-checklist">8. 驗收核對清單 (Acceptance Checklist)</h2>
+<ul class="contains-task-list">
+<li class="task-list-item enabled"><input class="task-list-item-checkbox" checked=""type="checkbox"> 網站標題、品牌標誌、顏色與規格綱要（藍色系、吉他商場）100% 吻合。</li>
+<li class="task-list-item enabled"><input class="task-list-item-checkbox" checked=""type="checkbox"> 成功整合 Web Audio API 撥弦音色模擬，無須外部音檔即可正常發聲。</li>
+<li class="task-list-item enabled"><input class="task-list-item-checkbox" checked=""type="checkbox"> 支援 5 大分類切換、6 款精選吉他商品卡完整展現價格與木料細節。</li>
+<li class="task-list-item enabled"><input class="task-list-item-checkbox" checked=""type="checkbox"> 側邊購物車抽屜操作流暢（增減、總計、移除、結帳回饋）。</li>
+<li class="task-list-item enabled"><input class="task-list-item-checkbox" checked=""type="checkbox"> VIP 試奏預約表單具備完整驗證與次日日期預填邏輯。</li>
+<li class="task-list-item enabled"><input class="task-list-item-checkbox" checked=""type="checkbox"> 全站無破圖、版面自適應各尺寸螢幕。</li>
+</ul>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>
