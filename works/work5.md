@@ -54,9 +54,9 @@
    
 ## 評分方式
 - 檢查項目：完成後請打勾
-    - [ ] 在VSCode上修改/WebSpec_學號/works/work5.md：填寫學號、姓名，並同步於在GitHub上
-    - [ ] 在VSCode上複製/WebSpec_學號/specs/onepage1.md：修改各項內容後，並同步於在GitHub上
-    - [ ] 在VSCode使用AI工具以onepage1.md生成/WebPage_學號/onepage1/index.html網頁，並同步於在GitHub上
-    - [ ] 在GitHub上確認以上檔案是否完全同步內容
+    - [ v] 在VSCode上修改/WebSpec_學號/works/work5.md：填寫學號、姓名，並同步於在GitHub上
+    - [v ] 在VSCode上複製/WebSpec_學號/specs/onepage1.md：修改各項內容後，並同步於在GitHub上
+    - [ v] 在VSCode使用AI工具以onepage1.md生成/WebPage_學號/onepage1/index.html網頁，並同步於在GitHub上
+    - [ v] 在GitHub上確認以上檔案是否完全同步內容
 > [!important]
 > 請於上課時完成，若未到課同學，請於下次上課(**第6週**)前完成
