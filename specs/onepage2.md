@@ -144,8 +144,9 @@ index.html (吉他商場)
   - 交互功能：支援「立即珍藏購買」加入購物車，以及「試聽此琴」一鍵觸發音訊試聽。
   - **影片崁入**
 **影片崁入**
+
 - 使用 `<iframe>` 元素顯示
-- Youtube編號：hMOYa4EBntI
+- Youtube編號：pKgEnQvrEGI
 - 寬度：560px
 - 高度：315px
 
