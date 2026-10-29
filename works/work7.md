@@ -1,6 +1,6 @@
 # 第7次作業(4%)
-- 學號：(請務必填寫)
-- 姓名：(請務必填寫)
+- 學號：(11515142)
+- 姓名：(陳槿閎)
 
 ## 作業目標
 1. VSCode複製GitHub上2個儲存庫Repo
@@ -45,9 +45,9 @@
    
 ## 評分方式
 - 檢查項目：完成後請打勾
-    - [ ] 在VSCode上修改/WebSpec_學號/works/work7.md：填寫學號、姓名，並同步於在GitHub上
-    - [ ] 在VSCode上複製/WebSpec_學號/specs/onepage3.md：修改各項內容後，並同步於在GitHub上
-    - [ ] 在VSCode使用AI工具以onepage3.md生成/WebPage_學號/onepage3/index.html網頁，並同步於在GitHub上
-    - [ ] 在GitHub上確認以上檔案是否完全同步內容
+    - [v ] 在VSCode上修改/WebSpec_學號/works/work7.md：填寫學號、姓名，並同步於在GitHub上
+    - [v ] 在VSCode上複製/WebSpec_學號/specs/onepage3.md：修改各項內容後，並同步於在GitHub上
+    - [v] 在VSCode使用AI工具以onepage3.md生成/WebPage_學號/onepage3/index.html網頁，並同步於在GitHub上
+    - [ v] 在GitHub上確認以上檔案是否完全同步內容
 > [!important]
 > 請於上課時完成，若未到課同學，請於下次上課(**第8週**)前完成
